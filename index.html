@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Evitar indexación en Google -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberHive - Admin</title>
+    <!-- Modern Fonts: Outfit and Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=20261016_3">
+</head>
+<body>
+
+    <!-- ANIMATED BACKGROUND -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+
+    <!-- MAIN CONTAINER (FULL-WIDTH ENTERPRISE SAAS) -->
+    <main id="app-container">
+        
+        <!-- LOGIN SCREEN (PORTAL INSTITUCIONAL DOCENTE) -->
+        <section id="login-screen" class="glass-panel active">
+            <div class="login-header">
+                <div class="brand-shield-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="11" r="3"/></svg>
+                </div>
+                <h1>CyberHive Analytics</h1>
+                <p class="login-subtitle">Consola de Evaluación y Telemetría Educativa</p>
+                <span class="badge badge-academic">Portal Institucional</span>
+            </div>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="teacher-email">Correo Electrónico Institucional</label>
+                    <input type="email" id="teacher-email" placeholder="ej. profesor@colegio.edu.co o admin@cyberhive.edu.co" autocomplete="username">
+                </div>
+                <div class="input-group">
+                    <label for="admin-pwd">Contraseña</label>
+                    <div class="password-wrapper" style="position: relative; display: flex; align-items: center;">
+                        <input type="password" id="admin-pwd" placeholder="Ingresa tu contraseña..." required autocomplete="current-password" style="width: 100%; padding-right: 42px;">
+                        <button type="button" id="btn-toggle-pwd" class="btn-toggle-pwd" style="position: absolute; right: 10px; background: none; border: none; cursor: pointer; color: #94a3b8; display: flex; align-items: center; justify-content: center; padding: 4px; transition: color 0.2s;" title="Mostrar/Ocultar contraseña" aria-label="Mostrar/Ocultar contraseña">
+                            <svg id="eye-icon-show" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                            <svg id="eye-icon-hide" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
+                                <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
+                                <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
+                                <line x1="2" x2="22" y1="2" y2="22"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" id="btn-login">
+                    Ingresar a la Plataforma
+                </button>
+                <div id="login-error" class="error-msg hidden">Usuario o contraseña incorrectos.</div>
+                <div style="margin-top: 14px; font-size: 0.8rem; color: var(--text-muted); text-align: center; line-height: 1.45; background: rgba(0,0,0,0.25); padding: 10px; border-radius: 8px;">
+                    🔑 <strong>Docentes:</strong> Ingresa con tu correo registrado y tu contraseña.<br>
+                    🛡️ <strong>Administrador:</strong> Ingresa con tu correo institucional y contraseña de administración.
+                </div>
+            </form>
+        </section>
+
+        <!-- DASHBOARD SCREEN (FULL WIDTH SAAS CONSOLE) -->
+        <section id="dashboard-screen" class="glass-panel hidden">
+            <header class="dash-navbar">
+                <div class="navbar-brand">
+                    <div class="logo-shield">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="11" r="3"/></svg>
+                    </div>
+                    <div>
+                        <div class="brand-title-row">
+                            <h2>CyberHive Analytics</h2>
+                            <span class="badge badge-course" id="header-environment-badge">Entorno Docente</span>
+                        </div>
+                        <p class="subtitle">Consola Institucional de Investigación y Telemetría en Ciberseguridad</p>
+                    </div>
+                </div>
+
+                <div class="navbar-right">
+                    <div class="teacher-profile-pill">
+                        <div class="teacher-avatar" id="header-user-avatar">👨‍🏫</div>
+                        <div class="teacher-info">
+                            <strong id="header-teacher-name">Docente Titular</strong>
+                            <span id="header-teacher-email">I.E. CyberHive</span>
+                        </div>
+                    </div>
+
+                    <div class="header-actions">
+                        <button class="btn btn-secondary" id="btn-init-courses" title="Crear cursos base estándar si no existen">
+                            ⚡ Cursos Base
+                        </button>
+                        <button class="btn btn-secondary" id="btn-open-teacher-modal" title="Registrar nuevo docente en la institución">
+                            👨‍🏫 Registrar Docente
+                        </button>
+                        <button class="btn btn-primary btn-open-student-modal-trigger" id="btn-open-student-modal" title="Matricular nuevo alumno en la plataforma">
+                            ➕ Matricular Alumno
+                        </button>
+                        <button class="btn btn-secondary" id="btn-refresh" title="Sincronizar telemetría">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                            Sincronizar
+                        </button>
+                        <button class="btn btn-danger" id="btn-logout" title="Cerrar Sesión">
+                            Salir
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- TABS DE NAVEGACIÓN DE LA CONSOLA (ADMIN vs DOCENTE) -->
+            <nav class="console-tab-nav" id="console-tab-nav">
+                <button class="console-tab-btn active" id="tab-btn-telemetry" data-target="view-telemetry">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                    <span>📊 Telemetría y Estudiantes</span>
+                </button>
+                <button class="console-tab-btn" id="tab-btn-admin" data-target="view-admin">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="11" r="3"/></svg>
+                    <span>🛡️ Panel Administrativo (Docentes y Cursos)</span>
+                </button>
+            </nav>
+
+            <!-- VISTA 1: TELEMETRÍA Y ESTUDIANTES (DOCENTE Y ADMIN) -->
+            <div id="view-telemetry" class="console-tab-content active">
+                
+                <!-- BREADCRUMBS DE NAVEGACIÓN ACADÉMICA -->
+                <div class="academic-breadcrumbs" id="academic-breadcrumbs">
+                    <span class="breadcrumb-item active" id="bc-home">🏫 Inicio (Grados)</span>
+                    <span class="breadcrumb-separator hidden" id="bc-sep-grade">/</span>
+                    <span class="breadcrumb-item hidden" id="bc-grade">Grado</span>
+                    <span class="breadcrumb-separator hidden" id="bc-sep-course">/</span>
+                    <span class="breadcrumb-item hidden" id="bc-course">Curso</span>
+                </div>
+
+                <!-- ALERTA CUANDO DOCENTE NO TIENE CURSOS ASIGNADOS -->
+                <div id="alert-sin-cursos" class="hidden" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 10px; padding: 20px; margin-bottom: 24px; text-align: center;">
+                    <span style="font-size: 2rem; display: block; margin-bottom: 8px;">🔒</span>
+                    <h3 style="color: #f87171; margin-bottom: 6px;">Sin Cursos Asignados</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 600px; margin: 0 auto;">
+                        Actualmente no tienes cursos o salones asignados a tu cuenta docente. Por favor, solicita al Administrador del Sistema que asigne tus cursos en el Panel Administrativo para visualizar la telemetría de tus alumnos.
+                    </p>
+                </div>
+
+                <!-- ========================================================= -->
+                <!-- NIVEL 1: PANORAMA GENERAL POR GRADOS ESCOLARES -->
+                <!-- ========================================================= -->
+                <div id="view-level-grades">
+                    <!-- KPI ANALYTICS GRID (ENTERPRISE CARDS) -->
+                    <div class="kpi-grid">
+                        <div class="kpi-card kpi-primary">
+                            <div class="kpi-icon-wrap icon-blue">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <div class="kpi-details">
+                                <span class="kpi-label">Estudiantes Asignados</span>
+                                <span class="kpi-val" id="kpi-total-students">0</span>
+                                <span class="kpi-sub" id="kpi-active-students">0 estudiantes activos</span>
+                            </div>
+                        </div>
+                        <div class="kpi-card kpi-danger">
+                            <div class="kpi-icon-wrap icon-red">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                            </div>
+                            <div class="kpi-details">
+                                <span class="kpi-label">Riesgo Promedio Institucional</span>
+                                <span class="kpi-val" id="kpi-avg-risk">0%</span>
+                                <span class="kpi-sub" id="kpi-risk-status">Nivel Seguro</span>
+                            </div>
+                        </div>
+                        <div class="kpi-card kpi-warning">
+                            <div class="kpi-icon-wrap icon-amber">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/><circle cx="12" cy="12" r="2"/></svg>
+                            </div>
+                            <div class="kpi-details">
+                                <span class="kpi-label">Precisión Promedio Global</span>
+                                <span class="kpi-val" id="kpi-phishing-acc">--%</span>
+                                <span class="kpi-sub" id="kpi-phishing-time">En los 4 módulos de juego</span>
+                            </div>
+                        </div>
+                        <div class="kpi-card kpi-success">
+                            <div class="kpi-icon-wrap icon-green">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                            </div>
+                            <div class="kpi-details">
+                                <span class="kpi-label">Cobertura de Módulos</span>
+                                <span class="kpi-val" id="kpi-completed-modules">0%</span>
+                                <span class="kpi-sub">Avance curricular de la colmena</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin: 24px 0 16px 0;">
+                        <div>
+                            <h3 style="color: #f8fafc; font-size: 1.15rem; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+                                <span>🏫</span> Grados Curriculares Asignados
+                            </h3>
+                            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">Selecciona un grado escolar para comparar el rendimiento de sus cursos y salones</p>
+                        </div>
+                    </div>
+
+                    <!-- GRID DE TARJETAS DE GRADOS -->
+                    <div class="grades-cards-grid" id="grades-cards-grid">
+                        <!-- Inyectado dinámicamente por app.js -->
+                    </div>
+                </div>
+
+                <!-- ========================================================= -->
+                <!-- NIVEL 2: COMPARATIVA DE CURSOS DENTRO DEL GRADO -->
+                <!-- ========================================================= -->
+                <div id="view-level-courses" class="hidden">
+                    <button class="btn-back-level" id="btn-back-to-grades">
+                        ⬅ Volver al Panorama de Grados
+                    </button>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h2 id="courses-view-title" style="color: #f8fafc; font-size: 1.35rem; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+                            <span>📊</span> Grado — Comparativa entre Cursos
+                        </h2>
+                        <p style="color: var(--text-muted); font-size: 0.88rem; margin: 0;">Compara el desempeño en ciberseguridad entre salones y selecciona uno para ver la nómina de estudiantes</p>
+                    </div>
+
+                    <div class="courses-comparison-grid" id="courses-comparison-grid">
+                        <!-- Inyectado dinámicamente por app.js -->
+                    </div>
+                </div>
+
+                <!-- ========================================================= -->
+                <!-- NIVEL 3: NÓMINA DE ESTUDIANTES DEL CURSO SELECCIONADO -->
+                <!-- ========================================================= -->
+                <div id="view-level-students" class="hidden">
+                    <button class="btn-back-level" id="btn-back-to-courses">
+                        ⬅ Volver a Cursos del Grado
+                    </button>
+
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
+                        <div>
+                            <h2 id="students-view-title" style="color: #f8fafc; font-size: 1.35rem; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+                                <span>👥</span> Nómina de Estudiantes — Curso
+                            </h2>
+                            <p style="color: var(--text-muted); font-size: 0.88rem; margin: 0;">Haz clic en cualquier estudiante para abrir su ficha forense con las 5 pestañas de telemetría</p>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn btn-primary btn-open-student-modal-trigger" id="btn-open-student-modal-view" title="Matricular alumno en este curso">
+                                ➕ Matricular Alumno
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- DASHBOARD TOOLBAR -->
+                    <div class="dash-toolbar">
+                        <div class="toolbar-left">
+                            <label for="filter-course" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Curso:</label>
+                            <select id="filter-course" name="filter-course" class="select-control" aria-label="Filtrar por curso">
+                                <option value="ALL">🏫 Todos los Cursos</option>
+                            </select>
+
+                            <label for="filter-risk" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600; margin-left: 8px;">Riesgo:</label>
+                            <select id="filter-risk" name="filter-risk" class="select-control" aria-label="Filtrar por nivel de riesgo">
+                                <option value="ALL">Todos los Niveles</option>
+                                <option value="LOW">🟢 Bajo (&lt; 30)</option>
+                                <option value="MID">🟡 Medio (30 - 70)</option>
+                                <option value="HIGH">🔴 Crítico (&gt; 70)</option>
+                            </select>
+                        </div>
+                        <div class="toolbar-right">
+                            <label for="search-input" class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Buscar estudiante:</label>
+                            <input type="text" id="search-input" name="search-input" class="input-control search-input" placeholder="🔍 Buscar por nombre, código o correo..." aria-label="Buscar estudiante por nombre, código o correo">
+                        </div>
+                    </div>
+
+                    <!-- TABLE CONTAINER -->
+                    <div class="table-container">
+                        <table id="students-table">
+                            <thead>
+                                <tr>
+                                    <th>Estudiante / Código</th>
+                                    <th>Curso</th>
+                                    <th>Correo</th>
+                                    <th>Riesgo</th>
+                                    <th>Seguridad</th>
+                                    <th>Monedas</th>
+                                    <th>Módulos</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                                <!-- Rows injected by JS -->
+                            </tbody>
+                        </table>
+                        <div id="loading-spinner" class="spinner">Cargando datos de la colmena...</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- VISTA 2: PANEL EXCLUSIVO DE ADMINISTRACIÓN (DOCENTES Y CURSOS) -->
+            <div id="view-admin" class="console-tab-content hidden">
+                <!-- KPI ADMIN -->
+                <div class="kpi-grid">
+                    <div class="kpi-card kpi-primary">
+                        <div class="kpi-icon-wrap icon-blue">
+                            <span style="font-size: 1.5rem;">👨‍🏫</span>
+                        </div>
+                        <div class="kpi-details">
+                            <span class="kpi-label">Docentes Registrados</span>
+                            <span class="kpi-val" id="admin-kpi-teachers-count">0</span>
+                            <span class="kpi-sub">Plantilla autorizada</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card kpi-warning">
+                        <div class="kpi-icon-wrap icon-amber">
+                            <span style="font-size: 1.5rem;">🏫</span>
+                        </div>
+                        <div class="kpi-details">
+                            <span class="kpi-label">Cursos Institucionales</span>
+                            <span class="kpi-val" id="admin-kpi-courses-count">0</span>
+                            <span class="kpi-sub">Grupos activos</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card kpi-success">
+                        <div class="kpi-icon-wrap icon-green">
+                            <span style="font-size: 1.5rem;">👥</span>
+                        </div>
+                        <div class="kpi-details">
+                            <span class="kpi-label">Total Alumnos</span>
+                            <span class="kpi-val" id="admin-kpi-students-count">0</span>
+                            <span class="kpi-sub">En base de datos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 1: GESTIÓN DE DOCENTES -->
+                <div class="admin-section-panel">
+                    <div class="admin-section-header">
+                        <div>
+                            <h3 style="color: #f8fafc; font-size: 1.15rem; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+                                <span>👨‍🏫</span> Gestión de Docentes Autorizados
+                            </h3>
+                            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">Profesores con credenciales habilitadas para acceder al panel docente de CyberHive</p>
+                        </div>
+                        <button class="btn btn-primary" id="btn-admin-add-teacher">
+                            ➕ Registrar Nuevo Docente
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Docente</th>
+                                    <th>Correo Institucional</th>
+                                    <th>Área / Asignatura</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-teachers-tbody">
+                                <tr>
+                                    <td colspan="4" style="text-align: center; color: var(--text-muted); padding: 25px;">
+                                        Cargando plantilla docente...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 2: GESTIÓN DE CURSOS -->
+                <div class="admin-section-panel">
+                    <div class="admin-section-header">
+                        <div>
+                            <h3 style="color: #f8fafc; font-size: 1.15rem; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+                                <span>🏫</span> Cursos y Salones de Clase
+                            </h3>
+                            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">Estructura de grados y distribución de estudiantes en la institución</p>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn btn-primary" id="btn-admin-add-course">
+                                ➕ Nuevo Curso
+                            </button>
+                            <button class="btn btn-secondary" id="btn-admin-init-courses">
+                                ⚡ Inicializar Cursos Base (801-1102)
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="admin-courses-grid" id="admin-courses-grid">
+                        <!-- Inyectado dinámicamente por JS -->
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 3: DIAGNÓSTICO Y SALUD DEL SISTEMA -->
+                <div class="admin-section-panel">
+                    <div class="admin-section-header">
+                        <div>
+                            <h3 style="color: #f8fafc; font-size: 1.15rem; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+                                <span>🛠️</span> Diagnóstico y Estado del Sistema
+                            </h3>
+                            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">Supervisión en vivo de servicios en la nube, conectividad con base de datos y latencia</p>
+                        </div>
+                        <button class="btn btn-secondary" id="btn-check-system-health">
+                            🔄 Comprobar Diagnóstico
+                        </button>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+                        <div class="admin-course-card">
+                            <div class="admin-course-top">
+                                <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Supabase REST API</span>
+                                <span class="badge badge-success" id="health-badge-supabase">🟢 Conectado (200 OK)</span>
+                            </div>
+                            <strong style="color: #f8fafc; font-size: 1.05rem;" id="health-db-status">Base de Datos Operativa</strong>
+                            <span class="admin-course-sub" id="health-db-sub">txwyidqpdpvwettwbwov.supabase.co</span>
+                        </div>
+
+                        <div class="admin-course-card">
+                            <div class="admin-course-top">
+                                <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Backend en Render</span>
+                                <span class="badge badge-success" id="health-badge-server">🟢 Operacional</span>
+                            </div>
+                            <strong style="color: #f8fafc; font-size: 1.05rem;">Arquitectura BFF Segura</strong>
+                            <span class="admin-course-sub">Sesión HTTP-Only Cifrada</span>
+                        </div>
+
+                        <div class="admin-course-card">
+                            <div class="admin-course-top">
+                                <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Aislamiento Pedagógico</span>
+                                <span class="badge badge-course">Activo</span>
+                            </div>
+                            <strong style="color: #f8fafc; font-size: 1.05rem;">Telemetría en Modo Docente</strong>
+                            <span class="admin-course-sub">Solo accesible por profesores asignados</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL DETALLES ESTUDIANTE (TELEMETRÍA MODULAR EN 5 PESTAÑAS) -->
+    <div id="student-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel" style="max-width: 900px;">
+            <header class="modal-header">
+                <div>
+                    <h2 id="modal-name">Nombre Estudiante</h2>
+                    <p id="modal-email" class="subtitle">correo@estudiante.com</p>
+                    <span id="modal-course-badge" class="badge badge-course" style="margin-top: 6px; display: inline-block;">Curso: Sin Asignar</span>
+                </div>
+                <button id="btn-close-modal" class="btn-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </header>
+
+            <!-- TABS BAR SUPERIOR -->
+            <div class="modal-tabs-bar">
+                <button type="button" class="modal-tab-btn active" data-tab="tab-general">📊 Resumen General</button>
+                <button type="button" class="modal-tab-btn" data-tab="tab-e2">🎣 E2 Phishing</button>
+                <button type="button" class="modal-tab-btn" data-tab="tab-e3">🔑 E3 Contraseñas</button>
+                <button type="button" class="modal-tab-btn" data-tab="tab-e4">📱 E4 Laberinto Social</button>
+                <button type="button" class="modal-tab-btn" data-tab="tab-e5">🛡️ E5 Malware/Apps</button>
+            </div>
+            
+            <div class="modal-body">
+                <!-- PESTAÑA 1: RESUMEN GENERAL -->
+                <div id="tab-general" class="modal-tab-pane active">
+                    <!-- GRID DE ESTADÍSTICAS GLOBALES -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-icon">💰</span>
+                            <div class="stat-info">
+                                <p>Monedas</p>
+                                <h3 id="modal-monedas">0</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">🛡️</span>
+                            <div class="stat-info">
+                                <p>Seguridad</p>
+                                <h3 id="modal-seguridad">0</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">⚠️</span>
+                            <div class="stat-info">
+                                <p>Riesgo Global</p>
+                                <h3 id="modal-riesgo">0</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">🤝</span>
+                            <div class="stat-info">
+                                <p>Def. Social</p>
+                                <h3 id="modal-defensa-social">0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MATRIZ RÁPIDA DE LOS 4 MÓDULOS -->
+                    <div class="detail-section">
+                        <h3 style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                            <span>🧭</span> Matriz de Desempeño por Módulo
+                        </h3>
+                        <div class="mini-modules-grid" id="modal-general-modules-summary">
+                            <!-- Inyectado dinámicamente por app.js -->
+                        </div>
+                    </div>
+
+                    <!-- RANKING DE COMPETENCIAS (TOP FORTALEZAS vs TOP DEBILIDADES) -->
+                    <div class="ranking-grid">
+                        <div class="ranking-card fortalezas">
+                            <h4 style="color: #34d399;">🏆 Top Fortalezas (Dónde Destaca)</h4>
+                            <div id="modal-ranking-fortalezas"></div>
+                        </div>
+                        <div class="ranking-card debilidades">
+                            <h4 style="color: #f87171;">⚠️ Top Debilidades (Refuerzo Crítico)</h4>
+                            <div id="modal-ranking-debilidades"></div>
+                        </div>
+                    </div>
+
+                    <!-- MÓDULOS Y NIVELES ALCANZADOS -->
+                    <div class="detail-section">
+                        <h3>Módulos de la Colmena Completados</h3>
+                        <div class="modules-grid" id="modal-modules"></div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>Niveles de Desafío Alcanzados</h3>
+                        <div class="levels-grid" id="modal-levels"></div>
+                    </div>
+
+                    <!-- DIÁLOGOS Y PEDAGOGÍA -->
+                    <div class="detail-section">
+                        <h3>Interacciones, Contraseñas y Pedagogía</h3>
+                        <div class="logs-container" id="modal-logs"></div>
+                    </div>
+                </div>
+
+                <!-- PESTAÑA 2: E2 PHISHING -->
+                <div id="tab-e2" class="modal-tab-pane">
+                    <div class="diff-selector-row">
+                        <span class="diff-selector-label">🎯 Nivel de Desafío:</span>
+                        <div class="difficulty-pills" id="modal-e2-diff-pills">
+                            <button type="button" class="diff-pill active" data-mod="e2" data-diff="general" onclick="switchModuleDifficulty('e2', 'general')">⭐ Consolidado</button>
+                            <button type="button" class="diff-pill" data-mod="e2" data-diff="facil" onclick="switchModuleDifficulty('e2', 'facil')">🟢 Fácil</button>
+                            <button type="button" class="diff-pill" data-mod="e2" data-diff="medio" onclick="switchModuleDifficulty('e2', 'medio')">🟡 Medio</button>
+                            <button type="button" class="diff-pill" data-mod="e2" data-diff="dificil" onclick="switchModuleDifficulty('e2', 'dificil')">🔴 Difícil</button>
+                        </div>
+                    </div>
+
+                    <div class="phishing-banner">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h3 style="color: #67e8f9; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+                                <span>🎣</span> Edificio 2: Detección y Análisis de Phishing
+                            </h3>
+                            <span id="modal-e2-badge-primer-intento" class="badge badge-success">Primer Intento: Pendiente</span>
+                        </div>
+                        <div class="phishing-stats-row">
+                            <div class="phishing-stat-pill">
+                                <span>Intentos</span>
+                                <strong id="modal-e2-intentos">0</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Aciertos</span>
+                                <strong id="modal-e2-aciertos" style="color: #34d399;">0</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Fallos</span>
+                                <strong id="modal-e2-errores" style="color: #f87171;">0</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Tiempo Promedio</span>
+                                <strong id="modal-e2-tiempo">0.0s</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Trampas / Reincidencia</span>
+                                <strong id="modal-e2-reincidencias" style="color: #fbbf24;">0</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Precisión</span>
+                                <strong id="modal-e2-precision">0%</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="modal-e2-weakness-box"></div>
+                    <div id="modal-e2-fallos-container"></div>
+                    <div class="diag-panel" id="modal-e2-diag">
+                        <!-- Inyectado por JS: análisis clínico-pedagógico -->
+                    </div>
+                </div>
+
+                <!-- PESTAÑA 3: E3 CONTRASEÑAS -->
+                <div id="tab-e3" class="modal-tab-pane">
+                    <div class="diff-selector-row">
+                        <span class="diff-selector-label">🎯 Nivel de Desafío:</span>
+                        <div class="difficulty-pills" id="modal-e3-diff-pills">
+                            <button type="button" class="diff-pill active" data-mod="e3" data-diff="general" onclick="switchModuleDifficulty('e3', 'general')">⭐ Consolidado</button>
+                            <button type="button" class="diff-pill" data-mod="e3" data-diff="facil" onclick="switchModuleDifficulty('e3', 'facil')">🟢 Fácil</button>
+                            <button type="button" class="diff-pill" data-mod="e3" data-diff="medio" onclick="switchModuleDifficulty('e3', 'medio')">🟡 Medio</button>
+                            <button type="button" class="diff-pill" data-mod="e3" data-diff="dificil" onclick="switchModuleDifficulty('e3', 'dificil')">🔴 Difícil</button>
+                        </div>
+                    </div>
+
+                    <div class="phishing-banner" style="border-color: rgba(168, 85, 247, 0.3); background: linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(15, 23, 42, 0.6) 100%);">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h3 style="color: #c084fc; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+                                <span>🔑</span> Edificio 3: Bóveda de Contraseñas y Credenciales
+                            </h3>
+                            <span id="modal-e3-badge-primer-intento" class="badge badge-course">Módulo E3</span>
+                        </div>
+                        <div class="phishing-stats-row">
+                            <div class="phishing-stat-pill">
+                                <span>Intentos</span>
+                                <strong id="modal-e3-intentos">0</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Aciertos</span>
+                                <strong id="modal-e3-aciertos" style="color: #34d399;">0</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Fallos</span>
+                                <strong id="modal-e3-errores" style="color: #f87171;">0</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Tiempo Promedio</span>
+                                <strong id="modal-e3-tiempo">0.0s</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Trampas / Reincidencia</span>
+                                <strong id="modal-e3-reincidencias" style="color: #fbbf24;">0</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Precisión</span>
+                                <strong id="modal-e3-precision">0%</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="modal-e3-weakness-box"></div>
+                    <div id="modal-e3-fallos-container"></div>
+                    <div class="diag-panel" id="modal-e3-diag"></div>
+                </div>
+
+                <!-- PESTAÑA 4: E4 LABERINTO SOCIAL -->
+                <div id="tab-e4" class="modal-tab-pane">
+                    <div class="diff-selector-row">
+                        <span class="diff-selector-label">🎯 Nivel de Desafío:</span>
+                        <div class="difficulty-pills" id="modal-e4-diff-pills">
+                            <button type="button" class="diff-pill active" data-mod="e4" data-diff="general" onclick="switchModuleDifficulty('e4', 'general')">⭐ Consolidado</button>
+                            <button type="button" class="diff-pill" data-mod="e4" data-diff="facil" onclick="switchModuleDifficulty('e4', 'facil')">🟢 Fácil</button>
+                            <button type="button" class="diff-pill" data-mod="e4" data-diff="medio" onclick="switchModuleDifficulty('e4', 'medio')">🟡 Medio</button>
+                            <button type="button" class="diff-pill" data-mod="e4" data-diff="dificil" onclick="switchModuleDifficulty('e4', 'dificil')">🔴 Difícil</button>
+                        </div>
+                    </div>
+
+                    <div class="phishing-banner" style="border-color: rgba(59, 130, 246, 0.3); background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(15, 23, 42, 0.6) 100%);">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h3 style="color: #60a5fa; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+                                <span>📱</span> Edificio 4: Laberinto Social e Ingeniería Social
+                            </h3>
+                            <span id="modal-e4-badge-primer-intento" class="badge badge-course">Módulo E4</span>
+                        </div>
+                        <div class="phishing-stats-row">
+                            <div class="phishing-stat-pill">
+                                <span>Intentos</span>
+                                <strong id="modal-e4-intentos">0</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Aciertos</span>
+                                <strong id="modal-e4-aciertos" style="color: #34d399;">0</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Fallos</span>
+                                <strong id="modal-e4-errores" style="color: #f87171;">0</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Tiempo Promedio</span>
+                                <strong id="modal-e4-tiempo">0.0s</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Trampas / Reincidencia</span>
+                                <strong id="modal-e4-reincidencias" style="color: #fbbf24;">0</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Precisión</span>
+                                <strong id="modal-e4-precision">0%</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="modal-e4-weakness-box"></div>
+                    <div id="modal-e4-fallos-container"></div>
+                    <div class="diag-panel" id="modal-e4-diag"></div>
+                </div>
+
+                <!-- PESTAÑA 5: E5 MALWARE Y APLICACIONES -->
+                <div id="tab-e5" class="modal-tab-pane">
+                    <div class="diff-selector-row">
+                        <span class="diff-selector-label">🎯 Nivel de Desafío:</span>
+                        <div class="difficulty-pills" id="modal-e5-diff-pills">
+                            <button type="button" class="diff-pill active" data-mod="e5" data-diff="general" onclick="switchModuleDifficulty('e5', 'general')">⭐ Consolidado</button>
+                            <button type="button" class="diff-pill" data-mod="e5" data-diff="facil" onclick="switchModuleDifficulty('e5', 'facil')">🟢 Fácil</button>
+                            <button type="button" class="diff-pill" data-mod="e5" data-diff="medio" onclick="switchModuleDifficulty('e5', 'medio')">🟡 Medio</button>
+                            <button type="button" class="diff-pill" data-mod="e5" data-diff="dificil" onclick="switchModuleDifficulty('e5', 'dificil')">🔴 Difícil</button>
+                        </div>
+                    </div>
+
+                    <div class="phishing-banner" style="border-color: rgba(234, 179, 8, 0.3); background: linear-gradient(135deg, rgba(234, 179, 8, 0.08) 0%, rgba(15, 23, 42, 0.6) 100%);">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h3 style="color: #facc15; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+                                <span>🛡️</span> Edificio 5: Protección contra Malware y Permisos
+                            </h3>
+                            <span id="modal-e5-badge-primer-intento" class="badge badge-course">Módulo E5</span>
+                        </div>
+                        <div class="phishing-stats-row">
+                            <div class="phishing-stat-pill">
+                                <span>Intentos</span>
+                                <strong id="modal-e5-intentos">0</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Aciertos</span>
+                                <strong id="modal-e5-aciertos" style="color: #34d399;">0</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Fallos</span>
+                                <strong id="modal-e5-errores" style="color: #f87171;">0</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Tiempo Promedio</span>
+                                <strong id="modal-e5-tiempo">0.0s</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Trampas / Reincidencia</span>
+                                <strong id="modal-e5-reincidencias" style="color: #fbbf24;">0</strong>
+                            </div>
+                            <div class="phishing-stat-pill">
+                                <span>Precisión</span>
+                                <strong id="modal-e5-precision">0%</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="modal-e5-weakness-box"></div>
+                    <div id="modal-e5-fallos-container"></div>
+                    <div class="diag-panel" id="modal-e5-diag"></div>
+                </div>
+
+            </div>
+
+            <footer class="modal-footer" style="display: flex; gap: 12px; justify-content: flex-end; align-items: center; flex-wrap: wrap;">
+                <button class="btn btn-secondary" id="btn-modal-close-action">Cerrar</button>
+                <button class="btn btn-warning" id="btn-modal-reset-pwd" style="background: rgba(234, 179, 8, 0.15); border: 1px solid rgba(234, 179, 8, 0.4); color: #facc15; display: inline-flex; align-items: center; gap: 8px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    Restablecer Clave (123456)
+                </button>
+                <button class="btn btn-danger" id="btn-modal-reset">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+                    Reiniciar / Resetear Progreso
+                </button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- MODAL FORMULARIO MATRICULAR / EDITAR ESTUDIANTE -->
+    <div id="student-form-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel" style="max-width: 550px;">
+            <header class="modal-header">
+                <div>
+                    <h2 id="form-modal-title">Matricular Estudiante</h2>
+                    <p class="subtitle">Registrar alumno en el curso y habilitar telemetría</p>
+                </div>
+                <button id="btn-close-form-modal" class="btn-icon">✕</button>
+            </header>
+            <form id="student-crud-form">
+                <input type="hidden" id="form-student-id">
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="form-nombres">Nombres *</label>
+                        <input type="text" id="form-nombres" placeholder="Ej. Juan Andrés" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="form-apellidos">Apellidos *</label>
+                        <input type="text" id="form-apellidos" placeholder="Ej. Pérez Gómez" required>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="form-email">Correo Institucional *</label>
+                        <input type="email" id="form-email" placeholder="alumno@colegio.edu.co" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="form-codigo">Código Estudiantil</label>
+                        <input type="text" id="form-codigo" placeholder="Ej. 2026-901-05">
+                    </div>
+                </div>
+                <div class="form-field" style="margin-bottom: 16px;">
+                    <label for="form-curso">Curso Asignado *</label>
+                    <select id="form-curso" class="select-control" required style="width: 100%;">
+                        <option value="">Selecciona un curso...</option>
+                    </select>
+                </div>
+                <div id="form-student-pwd-info" style="margin-bottom: 20px; padding: 12px 14px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+                        <div>
+                            <strong style="color: #38bdf8; font-size: 0.88rem; display: block;">Acceso al Videojuego (Godot)</strong>
+                            <span id="form-pwd-description" style="color: var(--text-muted); font-size: 0.8rem;">Clave institucional por defecto: <code style="color: #34d399; font-weight: bold; font-size: 0.88rem;">123456</code></span>
+                        </div>
+                        <button type="button" class="btn btn-warning" id="btn-form-reset-password" style="font-size: 0.78rem; padding: 6px 12px; background: rgba(234, 179, 8, 0.15); border: 1px solid rgba(234, 179, 8, 0.4); color: #facc15; display: none; align-items: center; gap: 6px;">
+                            🔑 Resetear a 123456
+                        </button>
+                    </div>
+                </div>
+                <footer class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-cancel-form">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btn-save-student">Guardar Estudiante</button>
+                </footer>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL GESTIÓN DE DOCENTES (PROFESORES) -->
+    <div id="teacher-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel" style="max-width: 680px;">
+            <header class="modal-header">
+                <div>
+                    <h2>Gestión y Registro de Docentes</h2>
+                    <p class="subtitle">Administra los profesores autorizados para acceder a CyberHive</p>
+                </div>
+                <button id="btn-close-teacher-modal" class="btn-icon">✕</button>
+            </header>
+            <div class="modal-body">
+                <!-- FORMULARIO NUEVO DOCENTE -->
+                <form id="teacher-crud-form">
+                    <h3 style="font-size: 0.95rem; color: #38bdf8; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                        <span>👨‍🏫</span> Registrar Nuevo Docente
+                    </h3>
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label for="prof-nombres">Nombres *</label>
+                            <input type="text" id="prof-nombres" placeholder="Ej. Carlos Alberto" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="prof-apellidos">Apellidos *</label>
+                            <input type="text" id="prof-apellidos" placeholder="Ej. Gómez Morales" required>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label for="prof-email">Correo Institucional *</label>
+                            <input type="email" id="prof-email" placeholder="carlos.gomez@cyberhive.edu.co" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="prof-area">Área / Asignatura</label>
+                            <input type="text" id="prof-area" placeholder="Ej. Tecnología e Informática" value="Tecnología e Informática">
+                        </div>
+                    </div>
+                    <div class="form-field" style="margin-bottom: 14px;">
+                        <label for="prof-password">Contraseña Inicial Asignada (Opcional)</label>
+                        <input type="text" id="prof-password" placeholder="Contraseña institucional inicial" value="">
+                        <small style="color: var(--text-muted); font-size: 0.78rem; display: block; margin-top: 4px;">
+                            🔒 En su primer ingreso al sistema, el docente será obligado a crear su contraseña definitiva.
+                        </small>
+                    </div>
+                    <div class="form-field" style="margin-bottom: 16px;">
+                        <span class="form-label-title" style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 4px;">Cursos Asignados al Docente</span>
+                        <div id="prof-cursos-checkboxes" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; background: rgba(15,23,42,0.5); padding: 10px; border-radius: 8px; border: 1px solid var(--border-subtle); min-height: 44px; align-items: center;">
+                            <span style="color: var(--text-muted); font-size: 0.8rem;">Cargando cursos disponibles...</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+                        <button type="submit" class="btn btn-primary" id="btn-save-teacher">
+                            ➕ Guardar Docente
+                        </button>
+                    </div>
+                </form>
+
+                <hr style="border: 0; border-top: 1px solid var(--border-subtle); margin: 20px 0;">
+
+                <!-- LISTA DE DOCENTES REGISTRADOS -->
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h3 style="font-size: 0.95rem; color: #f8fafc; display: flex; align-items: center; gap: 8px; margin: 0;">
+                            <span>📋</span> Docentes Registrados en el Sistema
+                        </h3>
+                        <span id="prof-count-badge" class="badge badge-course">0 Docentes</span>
+                    </div>
+                    <div id="teachers-list-container" class="teachers-list-container">
+                        <p style="color: var(--text-muted); font-size: 0.85rem; text-align: center; padding: 20px;">Cargando docentes...</p>
+                    </div>
+                </div>
+            </div>
+            <footer class="modal-footer" style="margin-top: 20px;">
+                <button type="button" class="btn btn-secondary" id="btn-cancel-teacher">Cerrar</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- MODAL CREACIÓN / EDICIÓN DE CURSO -->
+    <div id="course-crud-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel" style="max-width: 480px;">
+            <header class="modal-header">
+                <div>
+                    <h2 id="course-modal-title">Crear Nuevo Curso</h2>
+                    <p class="subtitle">Configurar grado, sección y docente titular</p>
+                </div>
+                <button id="btn-close-course-modal" class="btn-icon">✕</button>
+            </header>
+            <form id="course-crud-form">
+                <input type="hidden" id="form-course-id">
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="course-grado">Grado *</label>
+                        <select id="course-grado" class="select-control" required>
+                            <option value="9">Grado 9°</option>
+                            <option value="10">Grado 10°</option>
+                            <option value="11">Grado 11°</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="course-codigo">Código / Salón *</label>
+                        <input type="text" id="course-codigo" placeholder="Ej. 901, 1002" required>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="course-anio">Año Lectivo *</label>
+                        <input type="number" id="course-anio" value="2026" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="course-profesor">Docente Asignado</label>
+                        <select id="course-profesor" class="select-control">
+                            <option value="">(Sin docente asignado)</option>
+                        </select>
+                    </div>
+                </div>
+                <footer class="modal-footer" style="margin-top: 18px;">
+                    <button type="button" class="btn btn-secondary" id="btn-cancel-course">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btn-save-course">Guardar Curso</button>
+                </footer>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- MODAL CAMBIO OBLIGATORIO DE CONTRASEÑA (PRIMER INGRESO DEL DOCENTE) -->
+    <div id="change-password-modal" class="modal-overlay hidden" style="z-index: 9999; backdrop-filter: blur(8px);">
+        <div class="modal-content glass-panel" style="max-width: 480px; border: 1px solid rgba(56, 189, 248, 0.4); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);">
+            <header class="modal-header" style="border-bottom: 1px solid var(--border-subtle); padding-bottom: 14px;">
+                <div>
+                    <h2 style="font-size: 1.25rem; color: #f8fafc; display: flex; align-items: center; gap: 8px;">
+                        <span>🔐</span> Actualización Obligatoria de Contraseña
+                    </h2>
+                    <p class="subtitle" style="font-size: 0.85rem; color: #94a3b8; margin-top: 4px;">
+                        Primer ingreso detectado. Por seguridad institucional, debes configurar una nueva contraseña personal para acceder al sistema.
+                    </p>
+                </div>
+            </header>
+            <div class="modal-body" style="padding: 20px 0 10px 0;">
+                <form id="change-pwd-form">
+                    <div class="form-field" style="margin-bottom: 15px;">
+                        <label for="new-pwd-input">Nueva Contraseña *</label>
+                        <input type="password" id="new-pwd-input" placeholder="Ingresa tu nueva clave personal" required autocomplete="new-password">
+                    </div>
+                    <div class="form-field" style="margin-bottom: 15px;">
+                        <label for="confirm-pwd-input">Confirmar Nueva Contraseña *</label>
+                        <input type="password" id="confirm-pwd-input" placeholder="Repite exactamente tu nueva clave" required autocomplete="new-password">
+                    </div>
+
+                    <!-- REGLAS DE SEGURIDAD EN TIEMPO REAL -->
+                    <div class="pwd-requirements" style="background: rgba(15, 23, 42, 0.65); padding: 14px 16px; border-radius: 10px; border: 1px solid var(--border-subtle); margin-bottom: 18px;">
+                        <p style="font-size: 0.8rem; font-weight: 600; color: #cbd5e1; margin-bottom: 8px;">Requisitos de seguridad:</p>
+                        <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.8rem; display: flex; flex-direction: column; gap: 7px;">
+                            <li id="rule-len" class="rule-item invalid" style="display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
+                                <span class="rule-icon">✕</span> Mínimo 8 caracteres
+                            </li>
+                            <li id="rule-case" class="rule-item invalid" style="display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
+                                <span class="rule-icon">✕</span> Contiene mayúsculas y minúsculas
+                            </li>
+                            <li id="rule-num" class="rule-item invalid" style="display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
+                                <span class="rule-icon">✕</span> Contiene al menos un número (0-9)
+                            </li>
+                            <li id="rule-match" class="rule-item invalid" style="display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
+                                <span class="rule-icon">✕</span> Las contraseñas coinciden
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div id="change-pwd-error" style="color: #f87171; font-size: 0.82rem; margin-bottom: 12px; display: none; background: rgba(239, 68, 68, 0.1); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.25);"></div>
+
+                    <footer class="modal-footer" style="padding-top: 10px;">
+                        <button type="submit" class="btn btn-primary" id="btn-submit-new-pwd" style="width: 100%; justify-content: center;" disabled>
+                            🔒 Guardar Contraseña e Ingresar a CyberHive
+                        </button>
+                    </footer>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL RESTABLECIMIENTO DE CONTRASEÑA POR PARTE DEL ADMINISTRADOR -->
+    <div id="admin-reset-pwd-modal" class="modal-overlay hidden" style="z-index: 9998;">
+        <div class="modal-content glass-panel" style="max-width: 500px;">
+            <header class="modal-header">
+                <div>
+                    <h2 style="font-size: 1.2rem; color: #f8fafc; display: flex; align-items: center; gap: 8px;">
+                        <span>🔑</span> Restablecer Contraseña Docente
+                    </h2>
+                    <p class="subtitle" style="font-size: 0.85rem; color: #94a3b8; margin-top: 4px;">
+                        Asigna una clave temporal o restaura la institucional por defecto.
+                    </p>
+                </div>
+                <button id="btn-close-admin-reset-modal" class="btn-icon">✕</button>
+            </header>
+            <div class="modal-body">
+                <form id="admin-reset-pwd-form">
+                    <input type="hidden" id="reset-prof-id">
+                    <div style="background: rgba(15, 23, 42, 0.5); padding: 12px 14px; border-radius: 8px; margin-bottom: 15px; border: 1px solid var(--border-subtle);">
+                        <strong id="reset-prof-name" style="color: #f8fafc; display: block; font-size: 0.95rem;">-</strong>
+                        <span id="reset-prof-email" style="color: #38bdf8; font-size: 0.85rem;">-</span>
+                    </div>
+
+                    <div class="form-field" style="margin-bottom: 14px;">
+                        <label for="reset-temp-pwd">Contraseña Temporal Asignada *</label>
+                        <input type="text" id="reset-temp-pwd" placeholder="Contraseña temporal asignada" value="" required>
+                        <small style="color: var(--text-muted); font-size: 0.78rem; display: block; margin-top: 5px;">
+                            ⚡ El docente usará esta contraseña y el sistema le exigirá crear su clave definitiva al ingresar.
+                        </small>
+                    </div>
+
+                    <footer class="modal-footer" style="margin-top: 20px;">
+                        <button type="button" class="btn btn-secondary" id="btn-cancel-admin-reset">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" id="btn-confirm-admin-reset">
+                            🔑 Restablecer y Notificar Clave
+                        </button>
+                    </footer>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- APPLICATION LOGIC -->
+    <script type="module" src="app.js?v=20261016_3"></script>
+</body>
+</html>
